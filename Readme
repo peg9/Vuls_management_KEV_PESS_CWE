@@ -1,3 +1,26 @@
+Prioritisation CVE en fontion Cisa KEV et CVSS3 et PESS
+CVSS : est un systèmeStandardisé de notation des vulnérabilités établi par le FIRST (Forum of Incident Response and Security Teams). 
+Le score calculé, qui est entre 0 et 10, reflète la gravité de la vulnérabilité.
+
+EPSS Exploit Prediction Scoring System 
+calcul pour chaque vulnérabilité la probabilité que celle-ci soit réellement utilisée sous 12 mois lors d’une attaque informatique.
+L’Exploit Prediction Scoring System permet de calculer la probabilité d’exploitation d’une vulnérabilité et met en avant les vulnérabilités qui ont le plus de chance d’être utilisées sur le marché
+La formule de calcul du score EPSS met en avant, par construction, les vulnérabilités liées aux produits de Microsoft, IBM, Adobe, HP, Apache, Google, et Apple.
+Dans leur présentation de la Black Hat, les créateurs de l’EPSS partent de plusieurs constats du marché, à savoir
+Trop de vulnérabilités sont publiées par rapport à la quantité de vulnérabilités pouvant être traitées par les équipes de sécurité ;
+Moins de 5% des vulnérabilités sont réellement exploitées par des attaquants.
+Ils mettent notamment en avant les conclusions d’une présentation de Luca Allodi et Fabio Massacci en 2013, qui indiquent que :
+    -Corriger les vulnérabilités de niveau élevé ou moyen et qui disposent de kits d’attaque automatiques améliore le niveau de sécurité de 62,81 % ;
+    -Corriger les vulnérabilités de niveau élevé ou moyen et qui disposent de démonstrations de kits d’attaque améliore le niveau de sécurité de 19,64% ;
+    -Corriger les vulnérabilités de niveau élevé ou moyen améliore le niveau de sécurité de 3,2%.
+Avantage EPSS
+            Le score CVSS du NVD repose sur les capacités d’évaluation des équipes du NIST. (peut etre donné apres qq jours)
+            le score EPSS est calculé à partir des formules. En conséquence, le score EPSS est fourni très rapidement et donne un premier aperçu de l’importance d’une nouvelle vulnérabilité.
+
+Inconvenient EPSS:
+            L’Exploit Prediction Scoring System met en avant les vulnérabilités de certains constructeurs contrairement au CVSS qui est plus neutre : 
+            La formule de calcul du score EPSS met en avant, par construction, les vulnérabilités liées aux produits de Microsoft, IBM, Adobe, HP, Apache, Google, et Apple. 
+
 'traitement Champ priority
     'Epss score
     '^                               |
@@ -9,6 +32,9 @@
     '|0.2----------------------------|------------------------------
     '| CVE Priority 4                | CVE Priority 2
     '|__________________________5____6______________________________>CVSS score
+Lecture dans un classeur excel d'un rapport de vulnerabilite tenable enrichi des champs suivant (EPSS Score	EPSS Percentile	Priority	Exploits	weigh)
+Groupe	Plugin ID	CVE	CVSS	Risk	Host	Protocol	Port	Name	Synopsis	Description	Solution	See Also	Plugin Output	Asset UUID	Vulnerability State	IP Address	FQDN	NetBios	OS	MAC Address	Plugin Family	CVSS Base Score	CVSS Temporal Score	CVSS Temporal Vector	CVSS Vector	CVSS3 Base Score	CVSS3 Temporal Score	CVSS3 Temporal Vector	CVSS3 Vector	System Type	Host Start	Host End	Vulnerability Priority Rating (VPR)	First Found	Last Found	Host Scan Schedule ID	Host Scan ID	Indexed At	Last Authenticated Results Date	Last Unauthenticated Results Date	Tracked	Risk Factor	Severity	Original Severity	Modification	Plugin Family ID	Plugin Type	Plugin Version	Service	Plugin Modification Date	Plugin Publication Date	Checks for Malware	Exploit Available	Exploited by Malware	Exploited by Nessus	CANVAS	D2 Elliot	Metasploit	Core Exploits	ExploitHub	Default Account	Patch Available	In The News	Unsupported By Vendor	Last Fixed	Remediations	Know exploited	Notes	Last Unauthenticated Date	EPSS Score	EPSS Percentile	Priority	Exploits	weight
+Code vba sous Excel:
  For i = 2 To LigneFin
         If Cells(i, 69).Value = "NA" Then
            
