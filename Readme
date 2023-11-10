@@ -1,0 +1,43 @@
+'traitement Champ priority
+    'Epss score
+    '^                               |
+    '|                               |
+    '|                               |
+    '| CVE Priority 3                | CVE Priority 1
+    '|                               |
+    '|                               |
+    '|0.2----------------------------|------------------------------
+    '| CVE Priority 4                | CVE Priority 2
+    '|__________________________5____6______________________________>CVSS score
+ For i = 2 To LigneFin
+        If Cells(i, 69).Value = "NA" Then
+           
+            'priority :4    -EPSS<.2 and CVSS <6
+            If Cells(i, 71).Value < 0.2 And Cells(i, 27).Value < 6 Then
+                Cells(i, 73).Value = 4 'field priority
+                Cells(i, 75).Value = 2 'filed weight
+            End If
+             'priority :3   -EPSS>.2 and CVSS <6
+             If Cells(i, 71).Value > 0.2 And Cells(i, 27).Value <= 6 Then
+                Cells(i, 73).Value = 3 'field priority
+                Cells(i, 75).Value = 3 'filed weight
+                'Cells(i, 73).Font.Color = vbMagenta
+            End If
+            'priority :2    -EPSS<.2 and CVSS >= 6
+             If Cells(i, 71).Value < 0.2 And Cells(i, 27).Value >= 6 Then
+                Cells(i, 73).Value = 2 'field priority
+                Cells(i, 75).Value = 4 'filed weight
+            End If
+            'priority : 1   -EPSS>.2 and CVSS >6
+            If Cells(i, 71).Value > 0.2 And Cells(i, 27).Value > 6 Then
+                Cells(i, 73).Value = 1 'field priority
+                Cells(i, 75).Value = 5 'filed weight
+                 'Cells(i, 73).Font.Color = vbYellow
+            End If
+        Else
+            Cells(i, 73).Value = 1 'field priority CVE in Cisa KEV
+            Cells(i, 75).Value = 5 'filed weight
+            'Cells(i, 73).Font.Color = vbRed
+            
+        End If
+   
